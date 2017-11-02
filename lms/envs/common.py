@@ -2191,18 +2191,18 @@ EDXMKTG_USER_INFO_COOKIE_VERSION = 1
 
 MKTG_URLS = {}
 MKTG_URL_LINK_MAP = {
-    'ABOUT': 'about',
-    'CONTACT': 'contact',
-    'FAQ': 'help',
+    #'ABOUT': 'about',
+    #'CONTACT': 'contact',
+    'FAQ': 'faq',
     'COURSES': 'courses',
     'ROOT': 'root',
     'TOS': 'tos',
-    'HONOR': 'honor',  # If your site does not have an honor code, simply delete this line.
-    'PRIVACY': 'privacy',
-    'PRESS': 'press',
-    'BLOG': 'blog',
-    'DONATE': 'donate',
-    'SITEMAP.XML': 'sitemap_xml',
+    #'HONOR': 'honor',  # If your site does not have an honor code, simply delete this line.
+    #'PRIVACY': 'privacy',
+    #'PRESS': 'press',
+    #'BLOG': 'blog',
+    #'DONATE': 'donate',
+    #'SITEMAP.XML': 'sitemap_xml',
 
     # Verified Certificates
     'WHAT_IS_VERIFIED_CERT': 'verified-certificate',
@@ -3047,3 +3047,9 @@ DOC_LINK_BASE_URL = None
 ############## Settings for the Enterprise App ######################
 
 ENTERPRISE_ENROLLMENT_API_URL = LMS_ROOT_URL + "/api/enrollment/v1/"
+
+############## X-Content-Type-Options  #############################
+
+#To prevent the browser from guessing the content type and force it to always use the type provided in the Content-Type header,
+#we need this to be enabled as True. (Security fix)
+SECURE_CONTENT_TYPE_NOSNIFF = True

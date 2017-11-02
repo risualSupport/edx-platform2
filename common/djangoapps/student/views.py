@@ -78,6 +78,7 @@ from collections import namedtuple
 
 from courseware.courses import get_courses, sort_by_announcement, sort_by_start_date  # pylint: disable=import-error
 from courseware.access import has_access
+from course_structure_api.v0.serializers import CourseSerializer
 
 from django_comment_common.models import Role
 
@@ -384,9 +385,16 @@ def _cert_info(user, course_overview, cert_status, course_mode):  # pylint: disa
         # showing the certificate web view button if certificate is ready state and feature flags are enabled.
         if has_html_certificates_enabled(course_overview.id, course_overview):
             if course_overview.has_any_active_web_certificate:
+                config_value = configuration_helpers.get_configuration_value('SHARED_ORG', '')
+                course_obj = CourseSerializer()
+                course_org = course_obj.get_org(course_overview)
+                if course_org in config_value:
+                    cert_url = configuration_helpers.get_configuration_value('CERT_URL', '')
+                else:
+                    cert_url = ''
                 status_dict.update({
                     'show_cert_web_view': True,
-                    'cert_web_view_url': get_certificate_url(course_id=course_overview.id, uuid=cert_status['uuid'])
+                    'cert_web_view_url': cert_url + get_certificate_url(course_id=course_overview.id, uuid=cert_status['uuid'])
                 })
             else:
                 # don't show download certificate button if we don't have an active certificate for course
@@ -1613,8 +1621,8 @@ def _do_create_account(form, custom_form=None, site=None):
     except Exception:  # pylint: disable=broad-except
         log.exception("UserProfile creation failed for user {id}.".format(id=user.id))
         raise
-    #added to create the record in languageProficiency table
-    if form.cleaned_data.get("language") != None:
+    # added to create the record in languageProficiency table
+    if form.cleaned_data.get("language"):
         profile.language_proficiencies.create(code=form.cleaned_data.get("language"))
         profile.save()
 
@@ -2209,8 +2217,7 @@ def password_reset(request):
     if form.is_valid():
         form.save(use_https=request.is_secure(),
                   from_email=configuration_helpers.get_value('email_from_address', settings.DEFAULT_FROM_EMAIL),
-                  request=request,
-                  domain_override=request.get_host())
+                  request=request)
         # When password change is complete, a "edx.user.settings.changed" event will be emitted.
         # But because changing the password is multi-step, we also emit an event here so that we can
         # track where the request was initiated.
@@ -2231,7 +2238,7 @@ def password_reset(request):
     from_email = request.POST.get('email')
     return JsonResponse({
         'success': True,
-        'value': render_to_string('registration/password_reset_done.html', {'email':  from_email}),
+        'value': render_to_string('registration/password_reset_done.html', {'email': from_email}),
     })
 
 
@@ -2270,7 +2277,7 @@ def validate_password(user, password):
 
     enforce_password_policy = configuration_helpers.get_value(
         "ENFORCE_PASSWORD_POLICY", settings.FEATURES.get("ENFORCE_PASSWORD_POLICY", False)
-    ) 
+    )
 
     if enforce_password_policy:
         try:
