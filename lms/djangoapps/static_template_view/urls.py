@@ -16,7 +16,8 @@ urlpatterns = (
     # display error page templates, for testing purposes
     url(r'^404$', 'render_404'),  # Can this be deleted? Test test_404_microsites fails with this.
     url(r'^500$', 'render_500'),
-
+    
+    url(r'^blog$', 'render', {'template': 'about.html'}, name="about"
     url(r'^blog$', 'render', {'template': 'blog.html'}, name="blog"),
     url(r'^contact$', 'render', {'template': 'contact.html'}, name="contact"),
     url(r'^donate$', 'render', {'template': 'donate.html'}, name="donate"),
