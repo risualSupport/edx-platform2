@@ -18,7 +18,8 @@ urlpatterns = (
     url(r'^500$', 'render_500'), 
     
     
-    url(r'^MyNewPage$', 'render', {'template': 'MyNewPage.html'}, name="MyNewPage"),
+    url(r'^cookie-policy$', 'render', {'template': 'cookie-policy.html'}, name="cookie-policy"),
+    url(r'^privacy$', 'render', {'template': 'privacy.html'}, name="privacy"),
     url(r'^about$', 'render', {'template': 'about.html'}, name="about"),
     #url(r'^blog$', 'render', {'template': 'blog.html'}, name="blog"),
     url(r'^contact$', 'render', {'template': 'contact.html'}, name="contact"),
