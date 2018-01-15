@@ -298,6 +298,11 @@ FEATURES = {
 
     # Courseware search feature
     'ENABLE_COURSEWARE_SEARCH': True,
+	# Courseware search index
+	'ENABLE_COURSEWARE_INDEX': True,
+	# Courseware library index
+	'ENABLE_LIBRARY_INDEX': True, 
+
 
     # Dashboard search feature
     'ENABLE_DASHBOARD_SEARCH': False,
