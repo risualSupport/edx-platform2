@@ -6,8 +6,55 @@ course_mode_class = course_mode if course_mode else ''
 
 <main class="accomplishment accomplishment-main">
 
-    <div class="wrapper-accomplishment-rendering">
+    <div class="wrapper-accomplishment-rendering grid">
         <div class="accomplishment-rendering">
+		
+		<div class="grid-manual">
+          <div class="row">
+            <div class="col-8">
+                <div class="row ">
+                    <div class="col-12">
+                        <h1>Verified <br> Certificate</h1>
+                        <p>this is to certify</p>
+                        <h2>${accomplishment_copy_name | h}</h2>
+                        <p>${accomplishment_copy_description_full}</p>
+                        <h2>${accomplishment_copy_course_name}</h2>
+                        <p>${accomplishment_copy_course_description}</p>
+                        
+                            <div class="row text-center">
+                                <div class="col-4">
+                                    <img src="#">
+                                </div>
+                                <div class="col-4">
+                                    <h4>${certificate_date_issued_title}</h4>
+                                    <p>${certificate_date_issued}</p>
+                                </div>
+                                <div class="col-4">
+                                    <h4>{certificate_id_number_title}:</h4>
+                                    <p>${certificate_id_number}</p>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>  
+            <div class="col-4">
+                <div class="row">
+                    <div class="col-12 text-right">
+                        <img src="#">
+                        <h5>Course Tutor</h5>
+                        <h6>Tutor Title</h6>
+                        <img src="#">
+                        <h5>Course Tutor</h5>
+                        <h6>Tutor Title</h6>
+                        <img src="#">
+                        <h5>Course Tutor</h5>
+                        <h6>Tutor Title</h6>
+                    </div>
+                </div>
+                </div>
+          </div>
+      </div>
+		
             <span class="deco-corner deco-corner-tl"></span>
             <span class="deco-corner deco-corner-tr"></span>
             <span class="deco-corner deco-corner-bl"></span>
