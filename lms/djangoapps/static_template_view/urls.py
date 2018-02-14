@@ -17,6 +17,7 @@ urlpatterns = (
     url(r'^404$', 'render_404'),  # Can this be deleted? Test test_404_microsites fails with this.
     url(r'^500$', 'render_500'), 
     
+	url(r'^contact-form$', 'render', {'template': 'contactform.py'}, name="contact-form"),
     url(r'^cookie-policy$', 'render', {'template': 'cookie-policy.html'}, name="cookie-policy"),
     url(r'^cookie-policy$', 'render', {'template': 'cookie-policy.html'}, name="cookie-policy"),
     url(r'^privacy$', 'render', {'template': 'privacy.html'}, name="privacy"),
