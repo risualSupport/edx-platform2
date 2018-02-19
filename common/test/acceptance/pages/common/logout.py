@@ -10,7 +10,7 @@ class LogoutPage(PageObject):
     Logout page to logout current logged in user.
     """
 
-    url = https://learn.risual.com
+    url = 'https://learn.risual.com'
 
     def is_browser_on_page(self):
         return self.q(css='.btn-login').present
