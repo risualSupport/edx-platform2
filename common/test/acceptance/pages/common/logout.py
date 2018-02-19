@@ -10,7 +10,7 @@ class LogoutPage(PageObject):
     Logout page to logout current logged in user.
     """
 
-    url = BASE_URL + "/logout"
+    url = BASE_URL
 
     def is_browser_on_page(self):
         return self.q(css='.btn-login').present
